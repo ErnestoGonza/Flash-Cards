@@ -35,11 +35,10 @@ const Home = () => {
     });
   }, []);
 
-  useEffect(
-    () => {
-      setCards(arrCards);
-      console.log(cards);
-    });
+  useEffect(() => {
+    setCards(arrCards);
+    console.log(cards);
+  });
 
   return (
     <>
@@ -78,14 +77,6 @@ const Home = () => {
         tags={[...arrTags]}
         setTags={setArrTags}
       />
-      <div>
-        <h3>Index Cards</h3>
-        <div id={styles.cardsContainer}>
-          {arrCards.map((card) => (
-            <Card data={card} key={uuid()} />
-          ))}
-        </div>
-      </div>
     </>
   );
 };

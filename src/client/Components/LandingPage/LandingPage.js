@@ -5,13 +5,11 @@ import styles from './LandingPage.module.css';
 const LandingPage = () => {
   return (
     <>
-    <div className='mt-5'></div>
+      <div className="mt-5"></div>
       <div className="container d-flex justify-content-center text-center vertical-center ">
         <div className="row align-items-center">
           <div id={styles.divContainer} className="col align-items-center">
-            <div>
-              <img id={styles.landingImage} src={landingPageImage} />
-            </div>
+            <img id={styles.landingImage} src={landingPageImage} />
           </div>
           <a
             className="align-items-center login-btn"

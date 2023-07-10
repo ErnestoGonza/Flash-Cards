@@ -17,24 +17,10 @@ const Navbar = ({ leftItems }) => {
       {email && (
         <div className={styles.row}>
           <div className="nav-link-top">
-            {Object.entries(leftItems).map((e) => {
-              const [title, url] = e;
-              return (
-                <div className={styles.margin} key={uuid()}>
-                  <Link to='/library'>Alinea</Link>
-                </div>
-              );
-            })}
+            <Link to="/library">Alinea</Link>
           </div>
-
-          <div className={styles.row}>
-            <div className="nav-link-top">
-              {email ? (
-                <a href='http://localhost:8080/auth/logout'>logout</a>
-              ) : (
-                <a href={`http://localhost:8080/auth/google`}>log in</a>
-              )}
-            </div>
+          <div className="nav-link-top">
+            <a href="http://localhost:8080/auth/logout">logout</a>
           </div>
         </div>
       )}

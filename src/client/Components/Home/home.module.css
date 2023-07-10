@@ -1,7 +1,7 @@
 #createNewCard {
   transform: translateX(5%);
   width: 90%;
-  border-bottom: solid white 1px;
+  /* border-bottom: solid white 1px; */
   display: flex;
   flex-direction: column;
   align-items: center;

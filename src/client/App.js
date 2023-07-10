@@ -41,14 +41,12 @@ const App = () => {
           <BrowserRouter>
             {/* Component 'Navbar' must be placed within browser router so that navbar links work */}
             <Navbar leftItems={leftItems} />
-            <div>
-              <Routes>
-                <Route exact path="/" element={<LandingPage />} />
-                <Route exact path="/library" element={<Home />} />
-                {/* <Route exact path="/createCard" element={<CreateCard />} /> */}
-                <Route exact path="/flashcard" element={<FlashCard />} />
-              </Routes>
-            </div>
+            <Routes>
+              <Route exact path="/" element={<LandingPage />} />
+              <Route exact path="/library" element={<Home />} />
+              {/* <Route exact path="/createCard" element={<CreateCard />} /> */}
+              <Route exact path="/flashcard" element={<FlashCard />} />
+            </Routes>
           </BrowserRouter>
         </CardProvider>
       )}

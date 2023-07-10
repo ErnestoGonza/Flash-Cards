@@ -15,7 +15,7 @@ const FlashCard = () => {
   const navigate = useNavigate();
 
   const { cards, setCards } = useCards();
-  const shuffledCards = [...cards].sort((a,b) => 0.5 - Math.random());
+  const shuffledCards = [...cards].sort((a, b) => 0.5 - Math.random());
   const numCards = shuffledCards.length;
   const [currentCard, setCurrentCard] = useState(shuffledCards.pop());
   const [deck, setDeck] = useState(shuffledCards);
@@ -25,7 +25,7 @@ const FlashCard = () => {
 
   const getNextCard = (isCorrect) => {
     const newCompletedCards = [...completedCards];
-    const newCurrentCard = {...currentCard};
+    const newCurrentCard = { ...currentCard };
     const newDeck = [...deck];
     if (isCorrect) {
       setCorrectCount(correctCount + 1);
@@ -33,36 +33,38 @@ const FlashCard = () => {
     } else newCurrentCard.incorrect_count++;
     newCompletedCards.push(newCurrentCard);
     setCompletedCards(newCompletedCards);
-    (newDeck.length) ? setCurrentCard(newDeck.pop()) : setStudyComplete(true);
+    newDeck.length ? setCurrentCard(newDeck.pop()) : setStudyComplete(true);
     setDeck(newDeck);
-  }
+  };
 
   const backHome = () => {
     navigate('/library');
-  }
+  };
 
-  return (
-    studyComplete ?
-    <div>
-      <h3>{`Congrats! You have completed the current study session! ${correctCount} / ${numCards} correct.`}</h3>
-      <button onClick={() => backHome()}>Home</button>
-    </div> :
+  return studyComplete ? (
+    <div className={styles.results}>
+      <h3>{`Congrats! You have completed the current study session! ${correctCount} / ${numCards} correct. Click Alinea to return home.`}</h3>
+    </div>
+  ) : (
     <>
-      <div className='container d-flex justify-content-center text-center'>
-        <div className='col'>
+      <div
+        className="container d-flex justify-content-center text-center"
+        id={styles.cardBody}
+      >
+        <div className="col" id={styles.title}>
           <div className="main-card">
-            <h1 className="card-title">
-              {currentCard.title ?? ' No Title'}
-            </h1>
+            <h1 className="card-title">{currentCard.title ?? ' No Title'}</h1>
           </div>
 
           <div
-            id='card-front'
+            id="card-front"
             onClick={() => setShowFront(!showFront)}
             className="card-box"
           >
             <p className="card-text">
-              {showFront ? `front: ${currentCard.card_front}` : `back: ${currentCard.card_back}`}
+              {showFront
+                ? `front: ${currentCard.card_front}`
+                : `back: ${currentCard.card_back}`}
             </p>
           </div>
 
@@ -88,37 +90,37 @@ const FlashCard = () => {
 
 export default FlashCard;
 
- // useEffect(() => {
-  //   // we cannot use async/await in useEffect without wrapping in outer function
-  //   const response = axios({
-  //     method: 'get',
-  //     withCredentials: true,
-  //     url: `http://localhost:8080/api/cards/${id}`,
-  //   }).then((res) => {
-  //     // console.log('L24 FlashCards:', res.data, 'L24 FlashCards:');
-  //     setCardData(res.data);
-  //   });
-  // }, []);
+// useEffect(() => {
+//   // we cannot use async/await in useEffect without wrapping in outer function
+//   const response = axios({
+//     method: 'get',
+//     withCredentials: true,
+//     url: `http://localhost:8080/api/cards/${id}`,
+//   }).then((res) => {
+//     // console.log('L24 FlashCards:', res.data, 'L24 FlashCards:');
+//     setCardData(res.data);
+//   });
+// }, []);
 
-  // useEffect(() => {
-  //   // we cannot use async/await in useEffect without wrapping in outer function
-  //   const response = axios({
-  //     method: 'get',
-  //     withCredentials: true,
-  //     url: `http://localhost:8080/api/cards/nextCard/${id}`,
-  //   }).then((res) => {
-  //     console.log(res.data);
-  //     console.log('checking for res.data', res.data);
-  //     setnextCard(res.data);
-  //   });
-  // }, []);
+// useEffect(() => {
+//   // we cannot use async/await in useEffect without wrapping in outer function
+//   const response = axios({
+//     method: 'get',
+//     withCredentials: true,
+//     url: `http://localhost:8080/api/cards/nextCard/${id}`,
+//   }).then((res) => {
+//     console.log(res.data);
+//     console.log('checking for res.data', res.data);
+//     setnextCard(res.data);
+//   });
+// }, []);
 
-  // const deleteCard = () => {
-  //   const response = axios({
-  //     method: 'delete',
-  //     withCredentials: true,
-  //     url: `http://localhost:8080/api/cards/${id}`,
-  //   }).then((res) => {
-  //     window.location.href = `/library`;
-  //   });
-  // };
+// const deleteCard = () => {
+//   const response = axios({
+//     method: 'delete',
+//     withCredentials: true,
+//     url: `http://localhost:8080/api/cards/${id}`,
+//   }).then((res) => {
+//     window.location.href = `/library`;
+//   });
+// };
